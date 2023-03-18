@@ -75,31 +75,5 @@
       
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-
-        let buttons = document.querySelectorAll('.btn-like, .btn-dislike');
-
-        buttons.forEach(button => {
-        let liked = false;
-        let disliked = false;
-
-        button.addEventListener('click', function() {
-            if (liked && button.classList.contains('btn-primary')) {
-            button.classList.remove('btn-primary');
-            liked = false;
-            } else if (disliked && button.classList.contains('btn-warning')) {
-            button.classList.remove('btn-warning');
-            disliked = false;
-            } else if (!liked && button.classList.contains('btn-like')) {
-            button.classList.add('btn-primary');
-            liked = true;
-        } else if (!disliked && button.classList.contains('btn-dislike')) {
-            button.classList.add('btn-warning');
-            disliked = true;
-            }
-        });
-        });
-        
-    </script>
 </body>
 </html>

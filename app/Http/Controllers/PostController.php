@@ -18,14 +18,15 @@ class PostController extends Controller
     public function like($id)
     {
         $post = Post::findOrFail($id);
-        $user_id = auth()->user()->id;
+        $user = auth()->check();
         
         //reagir c'est like ou dislike
         // il faut etre connecter avant de pouvoir reagir
-        if (!$user_id)
+        if (!$user)
         {
             return redirect()->route('register');
         }
+        $user_id = auth()->user()->id;
 
         $like = Like::where('user_id', $user_id)
                     ->where('post_id', $post->id)
@@ -63,11 +64,13 @@ class PostController extends Controller
     public function dislike($id)
     {
         $post = Post::findOrFail($id);
-        $user_id = auth()->user()->id;
-        if (!$user_id)
+        $user = auth()->check();
+        
+        if (!$user)
         {
             return redirect()->route('register');
         }
+        $user_id = auth()->user()->id;
         $like = Like::where('user_id', $user_id)
                     ->where('post_id', $post->id)
                     ->first();
